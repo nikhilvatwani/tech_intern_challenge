@@ -45,3 +45,7 @@
     max-height:100vh;
     max-width: 100vw
 }
+
+span.sr-only {
+    display: none;
+}

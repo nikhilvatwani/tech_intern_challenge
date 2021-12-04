@@ -6,30 +6,40 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css'
 import './App.css';
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css'
+import filterFactory, {textFilter, dateFilter} from 'react-bootstrap-table2-filter'
+import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css'
 
 function DataList(){
     const [songsList, setSongsList] = useState([]);
     const columns = [
-        {dataField:'song', text: 'Song', sort: true},
-        {dataField:'artist', text: 'Artist', sort: true},
-        {dataField:'songReleaseDate', text: 'SongReleaseDate', sort: true},
-        {dataField:'playCount', text: 'PlayCount', sort: true},
-        {dataField:'metricA', text: 'MetricA', sort: true},
-        {dataField:'metricB', text: 'MetricB', sort: true},
-        {dataField:'metricC', text: 'MetricC', sort: true},
-        {dataField:'metricD', text: 'MetricD', sort: true},
-        {dataField:'metricE', text: 'MetricE', sort: true},
-        {dataField:'metricF', text: 'MetricF', sort: true},
-        {dataField:'metricG', text: 'MetricG', sort: true},
-        {dataField:'metricH', text: 'MetricH', sort: true},
-        {dataField:'metricI', text: 'MetricI', sort: true},
-        {dataField:'metricJ', text: 'MetricJ', sort: true},
-        {dataField:'metricK', text: 'MetricK', sort: true},
-        {dataField:'metricL', text: 'MetricL', sort: true},
-        {dataField:'metricM', text: 'MetricM', sort: true},
-        {dataField:'metricN', text: 'MetricN', sort: true},
-        {dataField:'metricO', text: 'MetricO', sort: true},
-        {dataField:'metricP', text: 'MetricP', sort: true}
+        {dataField:'song', text: 'Song', sort: true, filter: textFilter()} ,
+        {dataField:'artist', text: 'Artist', sort: true, filter: textFilter()},
+        {dataField:'songReleaseDate', text: 'SongReleaseDate', sort: true, sortFunc: (a, b, order, dataField, rowA, rowB) => {
+                                                                                if (order === 'asc')
+                                                                                {
+                                                                                  return Date.parse(a) - Date.parse(b)
+                                                                                }
+                                                                               else if (order === 'desc') {
+                                                                                  return  Date.parse(b) - Date.parse(a)
+                                                                                }
+                                                                            }, filter: dateFilter()},
+        {dataField:'playCount', text: 'PlayCount', sort: true, filter: textFilter()},
+        {dataField:'metricA', text: 'MetricA', sort: true, filter: textFilter()},
+        {dataField:'metricB', text: 'MetricB', sort: true, filter: textFilter()},
+        {dataField:'metricC', text: 'MetricC', sort: true, filter: textFilter()},
+        {dataField:'metricD', text: 'MetricD', sort: true, filter: textFilter()},
+        {dataField:'metricE', text: 'MetricE', sort: true, filter: textFilter()},
+        {dataField:'metricF', text: 'MetricF', sort: true, filter: textFilter()},
+        {dataField:'metricG', text: 'MetricG', sort: true, filter: textFilter()},
+        {dataField:'metricH', text: 'MetricH', sort: true, filter: textFilter()},
+        {dataField:'metricI', text: 'MetricI', sort: true, filter: textFilter()},
+        {dataField:'metricJ', text: 'MetricJ', sort: true, filter: textFilter()},
+        {dataField:'metricK', text: 'MetricK', sort: true, filter: textFilter()},
+        {dataField:'metricL', text: 'MetricL', sort: true, filter: textFilter()},
+        {dataField:'metricM', text: 'MetricM', sort: true, filter: textFilter()},
+        {dataField:'metricN', text: 'MetricN', sort: true, filter: textFilter()},
+        {dataField:'metricO', text: 'MetricO', sort: true, filter: textFilter()},
+        {dataField:'metricP', text: 'MetricP', sort: true, filter: textFilter()}
     ]
 
     const pagination = paginationFactory({
@@ -41,14 +51,6 @@ function DataList(){
         prePageText: '<',
         showTotal: true,
         alwaysShowAllBtns: true,
-        onPageChange: function(page, sizePerPage){
-            console.log('page', page);
-            console.log('sizePerPage', sizePerPage);
-        },
-        onSizePerPageChange: function (page, sizePerPage) {
-            console.log('page', page);
-            console.log('sizePerPage', sizePerPage);
-        }
     });
 
     useEffect(()=>{
@@ -63,7 +65,7 @@ function DataList(){
         <BootstrapTable bootstrap4 wrapperClasses="table-responsive"
                                      rowClasses="text-nowrap" keyField='song'
                                       columns={columns} data={songsList}
-                                       pagination={pagination}/>
+                                       pagination={pagination} filter= {filterFactory()}/>
 
     </div>
 }
