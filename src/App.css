@@ -43,9 +43,22 @@
 
 .table-responsive {
     max-height:100vh;
-    max-width: 100vw
+    max-width: 100vw;
+    font-size: small;
 }
 
 span.sr-only {
     display: none;
+}
+
+input.filter, #date-filter-comparator-songReleaseDate{
+    height:4vh;
+}
+#date-filter-comparator-songReleaseDate{
+    font-size: 8px
+}
+
+input::-webkit-input-placeholder {
+    font-size: 10px;
+    line-height: 3;
 }
