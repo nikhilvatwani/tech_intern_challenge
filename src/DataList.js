@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import allSongs from './resources/songData.json'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css'
 import './App.css';
 import paginationFactory from 'react-bootstrap-table2-paginator'
@@ -54,12 +53,17 @@ function DataList(){
     });
 
     useEffect(()=>{
-        var filteredSongsData = []
-        allSongs.map((curr)=>{
-            if(Date.parse(curr.songReleaseDate) > 0) filteredSongsData.push(curr);
-        })
-        console.log(filteredSongsData)
-        setSongsList(filteredSongsData)
+        fetch('https://vnb7xjwr02.execute-api.us-east-1.amazonaws.com/Prod/hello')
+            .then(response => response.json())
+            .then((allSongs)=>{
+                var filteredSongsData = []
+                allSongs.message.map((curr)=>{
+                    if(Date.parse(curr.songReleaseDate) > 0) filteredSongsData.push(curr);
+                })
+                console.log(filteredSongsData)
+                setSongsList(filteredSongsData)
+            })
+
     },[])
     return <div>
         <BootstrapTable bootstrap4 wrapperClasses="table-responsive"
