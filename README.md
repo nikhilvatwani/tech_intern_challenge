@@ -1,8 +1,11 @@
-# tech_intern_challenge
+## Technology stack used
+1)React.js
+2)AWS SAM - node.js lambda
 
-Build a simple web application that reads the json (attached) and displays the content in a tabular format. Make sure to discard records that has invalid release date on them. You may try adding features like sorting and search options on the page. 
-
-  ** You may use any programming languages.
-  ** You do not need to deploy or host this anywhere.
-  ** Authentication is not necessary.
-  ** It does not need to be mobile responsive.
+## Functionalities Included
+* Added client side filtering(React.js) of invalid records with songReleaseDate less than 01/01/1970.
+* Hosted songsData.json file on AWS SAM and created its API using node.js lambda.
+* Added text searching functionality for all the columns and date searching for songReleaseDate column.
+* Added sorting functionality for all the columns
+* Added Pagination, vertical and horizontal scrolling functionality as well.
+* Final UI screenshot is attached with file named "SongsData Table Screenshot.JPG"
