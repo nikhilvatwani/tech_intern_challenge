@@ -53,7 +53,7 @@ function DataList(){
     });
 
     useEffect(()=>{
-        fetch('https://vnb7xjwr02.execute-api.us-east-1.amazonaws.com/Prod/hello')
+        fetch('https://gzmlwyxcje.execute-api.us-east-1.amazonaws.com/Prod/getSongsData')
             .then(response => response.json())
             .then((allSongs)=>{
                 var filteredSongsData = []
